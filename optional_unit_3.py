@@ -15,9 +15,9 @@ def symmetric(p):
 
 #mean
 def list_mean(p):
-	total = 0 
+    total = 0 
     for i in p:
-		total = total + i
+	    total = total + i
 	    mean = total / float(len(p))
     return mean
     
