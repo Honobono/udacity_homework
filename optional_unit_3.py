@@ -5,11 +5,8 @@ def symmetric(p):
 		if len(p[r]) != n:
 			return False
 		for c in range(n):
-			if p[r][c] == p[c][r]:
-				pass
-			else:
+			if p[r][c] != p[c][r]:
 				return False
-
 	return True
 
 
