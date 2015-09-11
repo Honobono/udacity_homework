@@ -52,7 +52,40 @@ def is_identity_matrix(matrix):
                 return False
     return True
 
-#
+#numbers_in_lists
+def numbers_in_lists(string):
+    i = 0 #positioining of the integer in the string
+    y = int(string[i]) #the first int
+    result_list = [y] 
+    sub_list = []
+    
+    for i in range(len(string)-1): #indexing range(len(string)) would be out of range.
+        x = int(string[i+1]) #the int after the preceding int
+        if x <= y:  
+            sub_list.append(x)
+        elif x > y: 
+            y = x
+            if len(sub_list) > 0: #list is not empty
+                result_list.append(sub_list)
+                sub_list = []
+            result_list.append(x)
+    if len(sub_list) > 0:
+         result_list.append(sub_list)     
+
+    return result_list
+    
+    
+#frequency_analysis
+def freq_analysis(message):
+    n = len(message) #total number of chars in the msg
+    i = 0 #occurence of each letter
+    my_letters = "abcdefghijklmnopqrstuvwxyz"
+    freq_list = [0.0] * 26 #create an empty list of [0.0,0.0,0.0,0.0...]
+    for j in range(len(message)):
+        char = message[j:j+1]
+        freq_char = message.count(char) / float(n)
+        freq_list[my_letters.find(char)] = freq_char #replace item in empty list with char frequency. 
+    return freq_list
 
 
 
