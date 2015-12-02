@@ -248,9 +248,9 @@ def get_secondary_connections(network, user):
         secondary = []
         
         for name in get_connections(network, user):
-            secondary += get_connections(network, name)
+            secondary += get_connections(network, name) 
                 
-        return secondary
+        return list(set(secondary)) #remove duplicates
     else:
         return None
 
@@ -314,7 +314,8 @@ def path_to_friend(network, user_A, user_B, visited = None):
         return None
     
     if visited is None:
-        visited = [user_A]
+        visited = []
+    visited.append(user_A)
     if user_B in get_connections(network, user_A):
         return [user_A, user_B]
     for user_C in get_connections(network, user_A):
