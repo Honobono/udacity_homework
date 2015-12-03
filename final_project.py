@@ -209,7 +209,7 @@ def add_connection(network, user_A, user_B):
 #   network: the gamer network data structure
 #   user:    a string containing the name of the user to be added to the network
 #   games:   a list of strings containing the user's favorite games, e.g.:
-#		     ['Ninja Hamsters', 'Super Mushroom Man', 'Dinosaur Diner']
+#            ['Ninja Hamsters', 'Super Mushroom Man', 'Dinosaur Diner']
 #
 # Return: 
 #   The updated network with the new user and game preferences added. The new user 
@@ -224,7 +224,7 @@ def add_new_user(network, user, games):
         return network
     else:
         return network
-		
+        
 # ----------------------------------------------------------------------------- 
 # get_secondary_connections(network, user): 
 #   Finds all the secondary connections (i.e. connections of connections) of a 
@@ -254,7 +254,7 @@ def get_secondary_connections(network, user):
     else:
         return None
 
-# ----------------------------------------------------------------------------- 	
+# -----------------------------------------------------------------------------     
 # connections_in_common(network, user_A, user_B): 
 #   Finds the number of people that user_A and user_B have in common.
 #  
