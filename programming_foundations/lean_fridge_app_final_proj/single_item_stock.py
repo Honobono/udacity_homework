@@ -15,7 +15,13 @@ class Single_Item_Stock(object):
     def remove_stock(self, item_consumed):
         self.remove = item_consumed
         # assume the oldest produce is going to be consumed first
-        self.count[0] = self.count[0] -  self.remove
+        for i in range(len(self.count)-1):
+            if self.count[i] >= self.remove:
+                self.count[i] = self.count[i] -  self.remove
+            else:
+                new_item_count = sum(self.count) - self.remove
+                del self.count[:]
+                self.count.append(new_item_count)
         return self.count
 
     def total_count(self):
@@ -45,7 +51,7 @@ if __name__== '__main__':
     apple.add_stock(20151214, 6, 'worms :-(')
     print apple.total_count()
     print apple.total_days()
-    print apple.remove_stock(2)
+    print apple.remove_stock(4)
 
 
     
