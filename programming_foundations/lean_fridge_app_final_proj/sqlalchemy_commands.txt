@@ -1,0 +1,51 @@
+>>> from sqlalchemy import create_engine
+>>> from sqlalchemy.orm import sessionmaker
+>>> from lean_fridge_setup import Base, Stock, itemProperty
+>>> engine = create_engine('sqlite:///lean_fridge_app.db')
+>>> Base.metadata.bind = engine
+>>> DBSession = sessionmaker(bind = engine)
+>>> session = DBSession()
+>>> firstItem = Stock(id = 1, name = 'apple', total = 3)
+>>> session.add(firstItem)
+>>> session.commit()
+>>> session.query(Stock).all
+<bound method Query.all of <sqlalchemy.orm.query.Query object at 0xb6689cac>>
+>>> items = session.query(Stock).all()
+>>> for item in items:
+...     print item.name
+... 
+apple
+
+>>> orange = itemProperty(id = 2, name = 'orange', dates = '2015-01-10', count = 4, category = 'fruit', note = 'for smoothies', stock = secondItem)
+>>> session.add(orange)
+>>> session.commit()
+
+>>> from sqlalchemy import create_engine
+>>> from sqlalchemy.orm import sessionmaker
+>>> from lean_fridge_setup import Base, Stock, itemProperty
+>>> engine = create_engine('sqlite:///lean_fridge_app.db')
+>>> Base.metadata.bind = engine
+>>> DBSession = sessionmaker(bind = engine)
+>>> session = DBSession()
+>>> apple = itemProperty(id = 1, name = 'apple', dates = '2015-01-11', count = 3, category = 'fruit', note = 'Fuji organic apples')
+>>> session.add(apple)
+>>> session.commit()
+>>> 
+>>> session.query(itemProperty).all
+<bound method Query.all of <sqlalchemy.orm.query.Query object at 0xb6c1674c>>
+>>> items = session.query(itemProperty).all()
+>>> for item in items:
+...     print item.name
+... 
+apple
+
+>>> apple = session.query(itemProperty).filter_by(name = 'apple')
+>>> apple.count = 4
+>>> session.add(apple)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 1397, in add
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'sqlalchemy.orm.query.Query' is not mapped
+
+

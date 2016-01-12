@@ -1,0 +1,68 @@
+In commandline:
+python
+import sqlite3 
+db = sqlite3.connect('lean_fridge.db')
+c = db.cursor()
+c.execute("CREATE TABLE itemProperty(ID INT, name varchar(20), dates varchar(20), count INT, category varchar(20), note varchar(50))")
+
+c.execute("INSERT INTO itemProperty values("INSERT INTO itemProperty Values(1, 'apple', '2015-01-11', 3, 'fruit', 'Fuji organic apples')")
+### Insert 10 items the same way
+c.commit()
+
+
+SQL Statements:
+sqlite3 
+
+sqlite> .open lean_fridge.db
+sqlite> SELECT * FROM itemProperty;
+1|apple|2015-01-11|3|fruit|Fuji organic apples
+2|orange|2015-01-10|4|fruit|for smoothies
+3|banana|2015-01-09|6|fruit|for breakfast
+4|yogurt|2015-01-09|2|diary|on sale
+5|pasta|2015-01-01|2|grain|on sale, 2 bulks
+6|carrot|2015-01-10|6|vegetable|carrot sticks or stew
+7|potato|2015-01-02|5|vegetable|eat before sprouted, purple potatoes
+7|potato|2015-01-02|5|vegetable|eat before sprouted, purple potatoes
+8|celery|2015-01-03|4|vegetable|4 stalks
+9|tomato|2015-01-04|8|vegetable|romano tomatoes, small
+10|almond milk|2015-01-05|2|diary|expires in 2 weeks
+
+sqlite> SELECT name from itemProperty where category = 'vegetable';
+carrot
+potato
+potato
+celery
+tomato
+
+## There's two #7 potatos in the database, c.execute("INSERT INTO itemProperty VALUES(7, 'potato', '2015-01-02', 5, 'vegetable', 'eat before sprouted, purple potatoes')") --> db.commit() reinsert
+
+sqlite> SELECT * FROM itemProperty order by name desc;
+4|yogurt|2015-01-09|2|diary|on sale
+9|tomato|2015-01-04|8|vegetable|romano tomatoes, small
+7|potato|2015-01-02|5|vegetable|eat before sprouted, purple potatoes
+5|pasta|2015-01-01|2|grain|on sale, 2 bulks
+2|orange|2015-01-10|4|fruit|for smoothies
+8|celery|2015-01-03|4|vegetable|4 stalks
+6|carrot|2015-01-10|6|vegetable|carrot sticks or stew
+3|banana|2015-01-09|6|fruit|for breakfast
+1|apple|2015-01-11|3|fruit|Fuji organic apples
+10|almond milk|2015-01-05|2|diary|expires in 2 weeks
+
+sqlite> SELECT * FROM itemProperty order by count desc;
+9|tomato|2015-01-04|8|vegetable|romano tomatoes, small
+3|banana|2015-01-09|6|fruit|for breakfast
+6|carrot|2015-01-10|6|vegetable|carrot sticks or stew
+7|potato|2015-01-02|5|vegetable|eat before sprouted, purple potatoes
+2|orange|2015-01-10|4|fruit|for smoothies
+8|celery|2015-01-03|4|vegetable|4 stalks
+1|apple|2015-01-11|3|fruit|Fuji organic apples
+4|yogurt|2015-01-09|2|diary|on sale
+5|pasta|2015-01-01|2|grain|on sale, 2 bulks
+10|almond milk|2015-01-05|2|diary|expires in 2 weeks
+
+sqlite> SELECT * FROM itemProperty where count <= 2;
+4|yogurt|2015-01-09|2|diary|on sale
+5|pasta|2015-01-01|2|grain|on sale, 2 bulks
+10|almond milk|2015-01-05|2|diary|expires in 2 weeks
+
+
